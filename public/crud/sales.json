@@ -1,0 +1,54 @@
+{
+    "fields": [
+        {
+            "name": "invoice_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "invoice_product_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "quantity",
+            "type": "integer"
+        },
+        {
+            "name": "price",
+            "type": "decimal"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "invoice_product_id",
+            "references": "id",
+            "on": "invoice_products"
+        },
+        {
+            "column": "invoice_id",
+            "references": "id",
+            "on": "invoices"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "invoice",
+            "type": "belongsTo",
+            "class": "App\\Invoice"
+        },
+        {
+            "name": "InvoiceProduct",
+            "type": "belongsTo",
+            "class": "App\\InvoiceProducts"
+        }
+    ],
+    "validations": [
+        {
+            "field": "price",
+            "rules": "required|max:10"
+        },
+        {
+            "field": "quantity",
+            "rules": "required|max:10"
+        }
+    ]
+}

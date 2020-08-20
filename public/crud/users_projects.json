@@ -1,0 +1,36 @@
+{
+    "fields": [
+        {
+            "name": "user_id",
+            "type": "bigint#unsigned"
+        },
+        {
+            "name": "project_id",
+            "type": "integer#unsigned"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "user_id",
+            "references": "id",
+            "on": "users"
+        },
+        {
+            "column": "project_id",
+            "references": "id",
+            "on": "projects"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "user",
+            "type": "belongsTo",
+            "class": "App\\User"
+        },
+        {
+            "name": "project",
+            "type": "belongsTo",
+            "class": "App\\Project"
+        }
+    ]
+}
