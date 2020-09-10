@@ -1,0 +1,18 @@
+{
+    "fields": [
+        {
+            "name": "number",
+            "type": "integer"
+        },
+        {
+            "name": "date",
+            "type": "date"
+        }
+    ],
+    "validations": [
+        {
+            "field": "number",
+            "rules": "required"
+        }
+    ]
+}

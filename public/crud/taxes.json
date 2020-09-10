@@ -1,0 +1,22 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "percent",
+            "type": "integer"
+        }
+    ],
+    "validations": [
+        {
+            "field": "name",
+            "rules": "required|max:20"
+        },
+        {
+            "field": "percent",
+            "rules": "required|max:20|numeric"
+        }
+    ]
+}

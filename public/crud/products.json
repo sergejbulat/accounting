@@ -1,0 +1,58 @@
+{
+    "fields": [
+        {
+            "name": "name",
+            "type": "string"
+        },
+        {
+            "name": "volume",
+            "type": "decimal"
+        },
+        {
+            "name": "project_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "category_id",
+            "type": "integer#unsigned"
+        },
+        {
+            "name": "current_count",
+            "type": "integer"
+        }
+    ],
+    "foreign_keys": [
+        {
+            "column": "project_id",
+            "references": "id",
+            "on": "projects"
+        },
+        {
+            "column": "category_id",
+            "references": "id",
+            "on": "categories"
+        }
+    ],
+    "relationships": [
+        {
+            "name": "category",
+            "type": "belongsTo",
+            "class": "App\\Category"
+        },
+        {
+            "name": "project",
+            "type": "belongsTo",
+            "class": "App\\Project"
+        }
+    ],
+    "validations": [
+        {
+            "field": "name",
+            "rules": "required|max:10"
+        },
+        {
+            "field": "volume",
+            "rules": "required"
+        }
+    ]
+}
