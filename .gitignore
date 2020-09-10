@@ -3,7 +3,6 @@
 /public/storage
 /storage/*.key
 /vendor
-/laradock
 .env
 .idea
 .env.backup
