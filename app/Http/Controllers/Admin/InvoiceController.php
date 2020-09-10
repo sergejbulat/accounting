@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Invoice;
 use Illuminate\Http\Request;
+
 
 class InvoiceController extends Controller
 {
@@ -54,7 +53,7 @@ class InvoiceController extends Controller
 			'number' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         Invoice::create($requestData);
 
         return redirect('admin/invoice')->with('flash_message', 'Invoice added!');
@@ -102,7 +101,7 @@ class InvoiceController extends Controller
 			'number' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $invoice = Invoice::findOrFail($id);
         $invoice->update($requestData);
 

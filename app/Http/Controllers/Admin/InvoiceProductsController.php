@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\InvoiceProduct;
 use Illuminate\Http\Request;
+
 
 class InvoiceProductsController extends Controller
 {
@@ -58,7 +57,7 @@ class InvoiceProductsController extends Controller
 			'quantity' => 'required|max:10'
 		]);
         $requestData = $request->all();
-        
+
         InvoiceProduct::create($requestData);
 
         return redirect('admin/invoice-products')->with('flash_message', 'InvoiceProduct added!');
@@ -107,7 +106,7 @@ class InvoiceProductsController extends Controller
 			'quantity' => 'required|max:10'
 		]);
         $requestData = $request->all();
-        
+
         $invoiceproduct = InvoiceProduct::findOrFail($id);
         $invoiceproduct->update($requestData);
 

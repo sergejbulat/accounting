@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Sale;
 use Illuminate\Http\Request;
 
@@ -57,7 +55,7 @@ class SalesController extends Controller
 			'quantity' => 'required|max:10'
 		]);
         $requestData = $request->all();
-        
+
         Sale::create($requestData);
 
         return redirect('admin/sales')->with('flash_message', 'Sale added!');
@@ -106,7 +104,7 @@ class SalesController extends Controller
 			'quantity' => 'required|max:10'
 		]);
         $requestData = $request->all();
-        
+
         $sale = Sale::findOrFail($id);
         $sale->update($requestData);
 

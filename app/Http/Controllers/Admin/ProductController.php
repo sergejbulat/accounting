@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Product;
 use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -58,7 +57,7 @@ class ProductController extends Controller
 			'volume' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         Product::create($requestData);
 
         return redirect('admin/product')->with('flash_message', 'Product added!');
@@ -107,7 +106,7 @@ class ProductController extends Controller
 			'volume' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $product = Product::findOrFail($id);
         $product->update($requestData);
 

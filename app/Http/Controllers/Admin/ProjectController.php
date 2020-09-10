@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -53,7 +51,7 @@ class ProjectController extends Controller
 			'name' => 'required|max:20'
 		]);
         $requestData = $request->all();
-        
+
         Project::create($requestData);
 
         return redirect('admin/project')->with('flash_message', 'Project added!');
@@ -101,7 +99,7 @@ class ProjectController extends Controller
 			'name' => 'required|max:20'
 		]);
         $requestData = $request->all();
-        
+
         $project = Project::findOrFail($id);
         $project->update($requestData);
 

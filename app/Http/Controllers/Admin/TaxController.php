@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Tax;
 use Illuminate\Http\Request;
+
 
 class TaxController extends Controller
 {
@@ -55,7 +54,7 @@ class TaxController extends Controller
 			'percent' => 'required|max:20|numeric'
 		]);
         $requestData = $request->all();
-        
+
         Tax::create($requestData);
 
         return redirect('admin/tax')->with('flash_message', 'Tax added!');
@@ -104,7 +103,7 @@ class TaxController extends Controller
 			'percent' => 'required|max:20|numeric'
 		]);
         $requestData = $request->all();
-        
+
         $tax = Tax::findOrFail($id);
         $tax->update($requestData);
 

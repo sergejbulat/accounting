@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\UsersProject;
 use Illuminate\Http\Request;
+
 
 class UsersProjectsController extends Controller
 {
@@ -50,9 +49,9 @@ class UsersProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $requestData = $request->all();
-        
+
         UsersProject::create($requestData);
 
         return redirect('admin/users-projects')->with('flash_message', 'UsersProject added!');
@@ -96,9 +95,9 @@ class UsersProjectsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $requestData = $request->all();
-        
+
         $usersproject = UsersProject::findOrFail($id);
         $usersproject->update($requestData);
 

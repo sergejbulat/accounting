@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-
 use App\Category;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -54,7 +52,7 @@ class CategoryController extends Controller
 			'name' => 'required|max:20'
 		]);
         $requestData = $request->all();
-        
+
         Category::create($requestData);
 
         return redirect('admin/category')->with('flash_message', 'Category added!');
@@ -102,7 +100,7 @@ class CategoryController extends Controller
 			'name' => 'required|max:20'
 		]);
         $requestData = $request->all();
-        
+
         $category = Category::findOrFail($id);
         $category->update($requestData);
 

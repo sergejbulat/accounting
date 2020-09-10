@@ -21,15 +21,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('admin/project', 'Admin\\ProjectController');
-Route::resource('admin/users-projects', 'Admin\\UsersProjectsController');
-Route::resource('admin/invoice', 'Admin\\InvoiceController');
-Route::resource('admin/tax', 'Admin\\TaxController');
-Route::resource('admin/category', 'Admin\\CategoryController');
-Route::resource('admin/product', 'Admin\\ProductController');
-Route::resource('admin/invoice-products', 'Admin\\InvoiceProductsController');
-Route::resource('admin/sales', 'Admin\\SalesController');
+Route::prefix('admin')->group(function () {
+    Route::get('/', 'Admin\\AdminController@index')->name('admin');
+    Route::resource('project', 'Admin\\ProjectController');
+    Route::resource('users-projects', 'Admin\\UsersProjectsController');
+    Route::resource('invoice', 'Admin\\InvoiceController');
+    Route::resource('tax', 'Admin\\TaxController');
+    Route::resource('category', 'Admin\\CategoryController');
+    Route::resource('product', 'Admin\\ProductController');
+    Route::resource('invoice-products', 'Admin\\InvoiceProductsController');
+    Route::resource('sales', 'Admin\\SalesController');
+});
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
