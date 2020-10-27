@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sale extends Model
+class Product extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'sales';
+    protected $table = 'products';
 
     /**
     * The database primary key value.
@@ -25,15 +25,15 @@ class Sale extends Model
      *
      * @var array
      */
-    protected $fillable = ['invoice_id', 'invoice_product_id', 'quantity', 'price'];
+    protected $fillable = ['name', 'volume', 'project_id', 'category_id', 'current_count'];
 
-    public function invoice()
+    public function category()
     {
-        return $this->belongsTo('App\Invoice');
+        return $this->belongsTo('App\Models\Category');
     }
-    public function InvoiceProduct()
+    public function project()
     {
-        return $this->belongsTo('App\InvoiceProducts');
+        return $this->belongsTo('App\Models\Project');
     }
-    
+
 }

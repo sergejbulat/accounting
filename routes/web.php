@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,15 +22,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('/', 'Admin\\AdminController@index')->name('admin');
-    Route::resource('project', 'Admin\\ProjectController');
-    Route::resource('users-projects', 'Admin\\UsersProjectsController');
-    Route::resource('invoice', 'Admin\\InvoiceController');
-    Route::resource('tax', 'Admin\\TaxController');
-    Route::resource('category', 'Admin\\CategoryController');
-    Route::resource('product', 'Admin\\ProductController');
-    Route::resource('invoice-products', 'Admin\\InvoiceProductsController');
-    Route::resource('sales', 'Admin\\SalesController');
+    Route::resource('project', 'Admin\\ProjectController')->names('project');
+    Route::resource('users-projects', 'Admin\\UsersProjectsController')->names('users-projects');
+    Route::resource('invoice', 'Admin\\InvoiceController')->names('invoice');
+    Route::resource('tax', 'Admin\\TaxController')->names('tax');
+    Route::resource('category', 'Admin\\CategoryController')->names('category');
+    Route::resource('product', 'Admin\\ProductController')->names('product');
+    Route::resource('invoice-products', 'Admin\\InvoiceProductsController')->names('invoice-products');
+    Route::resource('sales', 'Admin\\SalesController')->names('sales');
+    Route::resource('rules', 'Admin\\RulesController')->names('rules');
+    Route::resource('users-rules', 'Admin\\UsersRulesController')->names('users-rules');
 });
 

@@ -4,8 +4,8 @@
 namespace App\Repositories;
 
 
+use App\Models\Tax;
 use App\Repositories\Interfaces\TaxRepositoryInterface;
-use App\Tax;
 
 class TaxRepository implements TaxRepositoryInterface
 {

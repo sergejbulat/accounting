@@ -4,8 +4,8 @@
 namespace App\Repositories;
 
 
+use App\Models\Sale;
 use App\Repositories\Interfaces\SaleRepositoryInterface;
-use App\Sale;
 
 class SaleRepository implements SaleRepositoryInterface
 {

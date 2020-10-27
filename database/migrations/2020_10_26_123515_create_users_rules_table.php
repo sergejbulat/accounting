@@ -2,8 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateUsersProjectsTable extends Migration
+class CreateUsersRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +13,14 @@ class CreateUsersProjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('users_projects', function (Blueprint $table) {
+        Schema::create('users_rules', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('project_id')->unsigned();
-            $table->boolean('default')->nullable();
+            $table->integer('rule_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('project_id')->references('id')->on('projects');
-            });
+            $table->foreign('rule_id')->references('id')->on('rules');
+        });
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateUsersProjectsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('users_projects');
+        Schema::drop('users_rules');
     }
 }

@@ -1,17 +1,17 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Invoice extends Model
+class Tax extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'invoices';
+    protected $table = 'taxes';
 
     /**
     * The database primary key value.
@@ -25,7 +25,7 @@ class Invoice extends Model
      *
      * @var array
      */
-    protected $fillable = ['number', 'date'];
+    protected $fillable = ['name', 'percent'];
 
-    
+
 }

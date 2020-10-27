@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sale;
+use App\Http\Requests;
+use App\Models\UsersRule;
 use Illuminate\Http\Request;
 
-class SalesController extends Controller
+class UsersRulesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,16 +20,14 @@ class SalesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $sales = Sale::where('invoice_id', 'LIKE', "%$keyword%")
-                ->orWhere('invoice_product_id', 'LIKE', "%$keyword%")
-                ->orWhere('quantity', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
+            $usersrules = UsersRule::where('user_id', 'LIKE', "%$keyword%")
+                ->orWhere('rule_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $sales = Sale::latest()->paginate($perPage);
+            $usersrules = UsersRule::latest()->paginate($perPage);
         }
 
-        return view('admin.sales.index', compact('sales'));
+        return view('admin.users-rules.index', compact('usersrules'));
     }
 
     /**
@@ -38,7 +37,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('admin.sales.create');
+        return view('admin.users-rules.create');
     }
 
     /**
@@ -50,78 +49,72 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-			'price' => 'required|max:10',
-			'quantity' => 'required|max:10'
-		]);
+
         $requestData = $request->all();
 
-        Sale::create($requestData);
+        UsersRule::create($requestData);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale added!');
+        return redirect('admin/users-rules')->with('flash_message', 'UsersRule added!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        $sale = Sale::findOrFail($id);
+        $usersrule = UsersRule::findOrFail($id);
 
-        return view('admin.sales.show', compact('sale'));
+        return view('admin.users-rules.show', compact('usersrule'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        $sale = Sale::findOrFail($id);
+        $usersrule = UsersRule::findOrFail($id);
 
-        return view('admin.sales.edit', compact('sale'));
+        return view('admin.users-rules.edit', compact('usersrule'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  int  $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-			'price' => 'required|max:10',
-			'quantity' => 'required|max:10'
-		]);
+
         $requestData = $request->all();
 
-        $sale = Sale::findOrFail($id);
-        $sale->update($requestData);
+        $usersrule = UsersRule::findOrFail($id);
+        $usersrule->update($requestData);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale updated!');
+        return redirect('admin/users-rules')->with('flash_message', 'UsersRule updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        Sale::destroy($id);
+        UsersRule::destroy($id);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale deleted!');
+        return redirect('admin/users-rules')->with('flash_message', 'UsersRule deleted!');
     }
 }

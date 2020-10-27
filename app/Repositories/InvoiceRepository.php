@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 
-use App\Invoice;
+use App\Models\Invoice;
 use App\Repositories\Interfaces\InvoiceRepositoryInterface;
 
 class InvoiceRepository implements InvoiceRepositoryInterface

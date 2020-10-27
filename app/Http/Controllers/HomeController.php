@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\UsersProjectRepository;
 
 class HomeController extends Controller
 {
@@ -19,10 +19,13 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
+     * @param UsersProjectRepository $usersProjectRepository
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(UsersProjectRepository $usersProjectRepository)
     {
-        return view('home');
+        $project = $usersProjectRepository->getCurrentProject();
+
+        return view('home', compact('project'));
     }
 }

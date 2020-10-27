@@ -7,26 +7,25 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">UsersProject {{ $usersproject->id }}</div>
+                    <div class="card-header">UsersRule {{ $usersrule->id }}</div>
                     <div class="card-body">
 
-                        <a href="{{ url('/admin/users-projects') }}" title="Back">
+                        <a href="{{ url('/admin/users-rules') }}" title="Back">
                             <button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i>
                                 Back
                             </button>
                         </a>
-                        <a href="{{ url('/admin/users-projects/' . $usersproject->id . '/edit') }}"
-                           title="Edit UsersProject">
+                        <a href="{{ url('/admin/users-rules/' . $usersrule->id . '/edit') }}" title="Edit UsersRule">
                             <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
                                                                       aria-hidden="true"></i> Edit
                             </button>
                         </a>
 
-                        <form method="POST" action="{{ url('admin/usersprojects' . '/' . $usersproject->id) }}"
+                        <form method="POST" action="{{ url('admin/usersrules' . '/' . $usersrule->id) }}"
                               accept-charset="UTF-8" style="display:inline">
                             {{ method_field('DELETE') }}
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-danger btn-sm" title="Delete UsersProject"
+                            <button type="submit" class="btn btn-danger btn-sm" title="Delete UsersRule"
                                     onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o"
                                                                                              aria-hidden="true"></i>
                                 Delete
@@ -40,19 +39,15 @@
                                 <tbody>
                                 <tr>
                                     <th>ID</th>
-                                    <td>{{ $usersproject->id }}</td>
+                                    <td>{{ $usersrule->id }}</td>
                                 </tr>
                                 <tr>
                                     <th> User Id</th>
-                                    <td> {{ $usersproject->user_id }} </td>
+                                    <td> {{ $usersrule->user_id }} </td>
                                 </tr>
                                 <tr>
-                                    <th> Project Id</th>
-                                    <td> {{ $usersproject->project_id }} </td>
-                                </tr>
-                                <tr>
-                                    <th> Default</th>
-                                    <td> {{ $usersproject->default }} </td>
+                                    <th> Rule Id</th>
+                                    <td> {{ $usersrule->rule_id }} </td>
                                 </tr>
                                 </tbody>
                             </table>

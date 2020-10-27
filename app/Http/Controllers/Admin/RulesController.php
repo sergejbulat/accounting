@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Sale;
+use App\Http\Requests;
+use App\Models\Rule;
 use Illuminate\Http\Request;
 
-class SalesController extends Controller
+class RulesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
@@ -19,16 +21,13 @@ class SalesController extends Controller
         $perPage = 25;
 
         if (!empty($keyword)) {
-            $sales = Sale::where('invoice_id', 'LIKE', "%$keyword%")
-                ->orWhere('invoice_product_id', 'LIKE', "%$keyword%")
-                ->orWhere('quantity', 'LIKE', "%$keyword%")
-                ->orWhere('price', 'LIKE', "%$keyword%")
+            $rules = Rule::where('name', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
-            $sales = Sale::latest()->paginate($perPage);
+            $rules = Rule::latest()->paginate($perPage);
         }
 
-        return view('admin.sales.index', compact('sales'));
+        return view('admin.rules.index', compact('rules'));
     }
 
     /**
@@ -38,7 +37,7 @@ class SalesController extends Controller
      */
     public function create()
     {
-        return view('admin.sales.create');
+        return view('admin.rules.create');
     }
 
     /**
@@ -50,78 +49,72 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-			'price' => 'required|max:10',
-			'quantity' => 'required|max:10'
-		]);
+
         $requestData = $request->all();
 
-        Sale::create($requestData);
+        Rule::create($requestData);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale added!');
+        return redirect('admin/rules')->with('flash_message', 'Rule added!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
     public function show($id)
     {
-        $sale = Sale::findOrFail($id);
+        $rule = Rule::findOrFail($id);
 
-        return view('admin.sales.show', compact('sale'));
+        return view('admin.rules.show', compact('rule'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\View\View
      */
     public function edit($id)
     {
-        $sale = Sale::findOrFail($id);
+        $rule = Rule::findOrFail($id);
 
-        return view('admin.sales.edit', compact('sale'));
+        return view('admin.rules.edit', compact('rule'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param  int  $id
+     * @param int                      $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-			'price' => 'required|max:10',
-			'quantity' => 'required|max:10'
-		]);
+
         $requestData = $request->all();
 
-        $sale = Sale::findOrFail($id);
-        $sale->update($requestData);
+        $rule = Rule::findOrFail($id);
+        $rule->update($requestData);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale updated!');
+        return redirect('admin/rules')->with('flash_message', 'Rule updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      *
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {
-        Sale::destroy($id);
+        Rule::destroy($id);
 
-        return redirect('admin/sales')->with('flash_message', 'Sale deleted!');
+        return redirect('admin/rules')->with('flash_message', 'Rule deleted!');
     }
 }

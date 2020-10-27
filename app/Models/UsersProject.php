@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,10 +14,10 @@ class UsersProject extends Model
     protected $table = 'users_projects';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,15 +25,21 @@ class UsersProject extends Model
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'project_id'];
+    protected $fillable = ['user_id', 'project_id', 'default'];
+
+    /**
+     * @var mixed
+     */
+    private $project;
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
+
     public function project()
     {
-        return $this->belongsTo('App\Project');
+        return $this->belongsTo('App\Models\Project');
     }
-    
+
 }

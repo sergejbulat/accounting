@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Tax;
+use App\Models\Tax;
 use Illuminate\Http\Request;
 
 

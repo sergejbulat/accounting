@@ -5,12 +5,8 @@
             "type": "bigint#unsigned"
         },
         {
-            "name": "project_id",
+            "name": "rule_id",
             "type": "integer#unsigned"
-        },
-        {
-            "name": "default",
-            "type": "boolean"
         }
     ],
     "foreign_keys": [
@@ -20,21 +16,21 @@
             "on": "users"
         },
         {
-            "column": "project_id",
+            "column": "rule_id",
             "references": "id",
-            "on": "projects"
+            "on": "rules"
         }
     ],
     "relationships": [
         {
             "name": "user",
             "type": "belongsTo",
-            "class": "App\\User"
+            "class": "App\\Models\\User"
         },
         {
-            "name": "project",
+            "name": "rule",
             "type": "belongsTo",
-            "class": "App\\Project"
+            "class": "App\\Models\\Rule"
         }
     ]
 }

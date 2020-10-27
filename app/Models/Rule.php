@@ -1,23 +1,23 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tax extends Model
+class Rule extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'taxes';
+    protected $table = 'rules';
 
     /**
-    * The database primary key value.
-    *
-    * @var string
-    */
+     * The database primary key value.
+     *
+     * @var string
+     */
     protected $primaryKey = 'id';
 
     /**
@@ -25,7 +25,7 @@ class Tax extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'percent'];
+    protected $fillable = ['name'];
 
-    
+
 }

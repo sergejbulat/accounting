@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 
-use App\Product;
+use App\Models\Product;
 use App\Repositories\Interfaces\ProductRepositoryInterface;
 
 class ProductRepository implements ProductRepositoryInterface
